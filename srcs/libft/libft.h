@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 21:51:13 by yuxu              #+#    #+#             */
-/*   Updated: 2018/04/30 14:36:09 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/07 15:59:36 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ unsigned int		ft_lcm(unsigned int a, unsigned int b);
 unsigned int		ft_pgcd(unsigned int first, unsigned int second);
 char				**ft_split_keep_blanc(char const *s, char c);
 int					ft_index(char *str, char c);
-int					get_next_line(int const fd, char **line);
 int					ft_read(int fd, char **line, int loc);
 void				ft_store(char *str, char **res, char **line, int loc);
 char				*ft_partstr(char *str, unsigned int i, char c);
@@ -103,5 +102,7 @@ char				*ft_strmove(char *str, size_t len);
 size_t				ft_tablen(char **tab);
 char				**ft_tabjoin(char **tab1, char **tab2);
 int					get_next_line(int const fd, char **line);
+char				*joinfree(char *s, char *buf, int rd);
+int					ft_read_line(int fd, char **line);
 
 #endif

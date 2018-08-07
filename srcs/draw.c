@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/02 18:38:32 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/07 14:49:04 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,4 @@ int		paint(void)
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_loop(mlx_ptr); //where to draw and gestion des evenements
 	return (0);
-}
-
-
-void	fdf(int fd)
-{
-	readfile(fd);
-	paint();
-
 }

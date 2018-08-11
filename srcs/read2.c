@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   read2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/11 17:50:48 by yuxu             ###   ########.fr       */
+/*   Created: 2018/08/11 17:24:30 by yuxu              #+#    #+#             */
+/*   Updated: 2018/08/11 17:50:37 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,28 @@
 
 #include <stdio.h>
 
-void	fdf(int fd)
+char	*readfile(int fd)
 {
-	int		**table;
-	int		i;
-	int		n;
+	int		rd;
+	char	buf[BUFF_SIZE + 1];
+	char	*content;
 
-//	if (error_check(fd) == -1)
-//		return ;
-	table = treatfile(fd);
-//	paint();
-	i = 0;
-	while (table[i])
-	{
-		n = 0;
-//		printf("%d ", i);
-		while (table[i][n] != 0)
-		{
-			printf("%d ", table[i][n]);
-			n++;
-		}
-		printf("\n");
-		i++;
-	}
-	return ;
+	content = NULL;
+	while ((rd = read(fd, buf, BUFF_SIZE)) > 0)
+		content = joinfree(content, buf, rd);
+	return (content);
 }
 
-int		main(int ac, char **av)
+int		**treatfile(int fd)
 {
-	int fd;
+	t_table t;
 
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (0);
-	fdf(fd);
-	close(fd);
+	t.content = readfile(fd);
+	t.cha_t = ft_split_keep_blanc(t.content, '\n');
+	t.lin = 0;
+	while (t.cha_t[t.lin])
+		ft_strsplit(t.cha_t[t.lin++], ' ');
+	printf("%s\n", t.cha_t[1][1]);
+
 	return (0);
 }

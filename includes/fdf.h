@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/07 20:54:59 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/11 17:50:44 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ typedef	struct		s_table
 {
 	char			*content;
 	int				**table;
+	char			**cha_t;
+	int				lin;
+	
 	int				lenth;
 	int				index;
 	int				col;
-	int				lin;
 	char			*word;
 	int				w_len;
 }					t_table;

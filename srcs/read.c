@@ -13,7 +13,7 @@
 #include "../includes/fdf.h"
 
 #include <stdio.h>
-/*
+
 int		return_count(char *content, char c)
 {
 	int i;
@@ -79,7 +79,7 @@ char	*readfile_compliance(int fd)
 		content = joinfree(content, buf, rd);
 	comply_str(content);
 	return (content);
-}*/
+}
 
 int		ft_atoi_large_free(char *word)
 {

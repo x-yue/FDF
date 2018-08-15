@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/11 17:50:44 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/15 19:04:10 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,31 @@ typedef	struct		s_table
 {
 	char			*content;
 	int				**table;
-	char			**cha_t;
+	char			**char_t;
 	int				lin;
-	
-	int				lenth;
-	int				index;
 	int				col;
-	char			*word;
-	int				w_len;
+	int				lenth;
 }					t_table;
 
-void				fdf(int fd);
-int					paint(void);
+typedef	struct		s_draw
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	int				line;
+	int				col;
+	int				map_hor;
+	int				map_ver;
+	int				vkeeper;
+
+	int				hor;
+	int				ver;
+}					t_draw;
+
+int					paint(int **table, char *name);
 int					deal_key(int key, void *param);
-int					**treatfile(int fd);
-char				*readfile(int fd);
+
+
+int					**treatfile(char *content);
+int					error_check(int fd, char *content);
 
 #endif

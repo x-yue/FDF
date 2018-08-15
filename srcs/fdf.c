@@ -6,35 +6,50 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/11 17:50:48 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/15 19:02:30 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
-#include <stdio.h>
-
-void	fdf(int fd)
+char	*readfile(int fd)
 {
+	int		rd;
+	char	buf[BUFF_SIZE + 1];
+	char	*content;
+
+	content = NULL;
+	while ((rd = read(fd, buf, BUFF_SIZE)) > 0)
+		content = joinfree(content, buf, rd);
+	return (content);
+}
+
+void	fdf(int fd, char *name)
+{
+	char	*content;
 	int		**table;
 	int		i;
 	int		n;
 
-//	if (error_check(fd) == -1)
-//		return ;
-	table = treatfile(fd);
-//	paint();
+	content = readfile(fd);
+//	ft_putstr("the table:\n");
+///	ft_putstr(content);
+//	ft_putstr("mine:\n");
+	if (error_check(fd, content) == -1)
+		return ;
+	table = treatfile(content);
+	paint(table, name);
 	i = 0;
 	while (table[i])
 	{
 		n = 0;
-//		printf("%d ", i);
 		while (table[i][n] != 0)
 		{
-			printf("%d ", table[i][n]);
+			ft_putnbr(table[i][n]);
+			ft_putchar(' ');
 			n++;
 		}
-		printf("\n");
+		ft_putstr("\n");
 		i++;
 	}
 	return ;
@@ -42,11 +57,11 @@ void	fdf(int fd)
 
 int		main(int ac, char **av)
 {
-	int fd;
+	int		fd;
 
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 		return (0);
-	fdf(fd);
+	fdf(fd, av[1]);
 	close(fd);
 	return (0);
 }

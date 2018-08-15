@@ -6,27 +6,11 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/15 19:04:24 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/15 21:30:45 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int		deal_key(int key, void *param)
-{
-	ft_putstr("<3");
-	//	mlx_pixel_put(mlx_ptr, win_ptr, 
-	return (0);
-}
-
-int		ft_dot(int **table, int lin, int col)
-{
-	t_draw d;
-	
-	d.vkeeper = table[lin][col];
-	mlx_pixel_put(d.mlx_ptr, d.win_ptr, lin * 10, col * 10, 0xFFFFFF);
-	return (0);
-}
 
 /*
 int		ft_map(void)
@@ -59,25 +43,44 @@ int		ft_map(void)
 }
 */
 
-int		ft_map(void)
+int		hor_map(int **table, char *content)
 {
-	t_draw	d;
+	int hor_map;
 
-	d.map_hor = 1618;
-	d.map_ver = 1000;
-	d.mlx_ptr = mlx_init();
-	d.win_ptr = mlx_new_window(d.mlx_ptr, d.map_hor, d.map_ver, "New Window");
-	mlx_key_hook(d.win_ptr, deal_key, (void *)0);
-	mlx_loop(d.mlx_ptr);
-	return (0);
+	hor_map = (int)ft_strlen(content) * 8;
+	return (hor_map);
 }
 
-int		paint(int	**table, char *name)
+int		ver_map(int **table, char *content)
+{
+	int ver_map;
+
+	ver_map = (int)ft_strlen(content) * 5;
+	return (ver_map);
+}
+
+int		hor_loc(int **table, int line, int col, int value)
+{
+	int		hor;
+
+	hor = line * 100 + value + 10;
+	return (hor);
+}
+
+int		ver_loc(int **table, int line, int col, int value)
+{
+	int		ver;
+
+	ver = col * 50 +  value * 10;
+	return (ver);
+}
+
+int		paint(int **table, char *content, char *name)
 {
 	t_draw	d;
-	//ft_map();
-	d.map_hor = 1618;
-	d.map_ver = 1000;
+
+	d.map_hor = hor_map(table, content);
+	d.map_ver = hor_map(table, content);
 	d.mlx_ptr = mlx_init();
 	d.win_ptr = mlx_new_window(d.mlx_ptr, d.map_hor, d.map_ver, name);
 	d.line = 0;
@@ -86,11 +89,16 @@ int		paint(int	**table, char *name)
 		d.col = 0;
 		while (table[d.line][d.col])
 		{
-			ft_dot(table, d.line, d.col);
+			d.value = table[d.line][d.col];
+			d.hor = hor_loc(table, d.line, d.col, d.value);
+			d.ver = ver_loc(table, d.line, d.col, d.value);
+			d.color = ft_color(d.value);
+			mlx_pixel_put(d.mlx_ptr, d.win_ptr, d.hor, d.ver, d.color);
 			d.col++;
 		}
 		d.line++;
 	}
+	ft_link(table, content, d.line, d.col);
 	mlx_key_hook(d.win_ptr, deal_key, (void *)0);
 	mlx_loop(d.mlx_ptr);
 	return (0);

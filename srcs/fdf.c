@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/15 19:02:30 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/15 21:27:37 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	fdf(int fd, char *name)
 	if (error_check(fd, content) == -1)
 		return ;
 	table = treatfile(content);
-	paint(table, name);
+	paint(table, content, name);
 	i = 0;
 	while (table[i])
 	{

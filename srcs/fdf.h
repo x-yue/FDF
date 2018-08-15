@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/15 19:04:10 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/15 21:30:11 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ typedef	struct		s_draw
 	int				col;
 	int				map_hor;
 	int				map_ver;
-	int				vkeeper;
-
+	int				value;
+	int				color;
 	int				hor;
 	int				ver;
 }					t_draw;
 
-int					paint(int **table, char *name);
+int					paint(int **table, char *content, char *name);
 int					deal_key(int key, void *param);
-
-
+int					ft_color(int value);
 int					**treatfile(char *content);
 int					error_check(int fd, char *content);
+void				ft_link(int **table, char *content, int line, int col);
 
 #endif

@@ -17,6 +17,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "../srcs/libft/libft.h"
 # include <fcntl.h>
+# include <OpenGL/gl3.h>
 
 # define BUFF_SIZE 100
 

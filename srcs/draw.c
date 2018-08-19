@@ -48,6 +48,8 @@ int		hor_map(int **table, char *content)
 	int hor_map;
 
 	hor_map = (int)ft_strlen(content) * 8;
+	if (hor_map > 1440)
+		hor_map = 1440;
 	return (hor_map);
 }
 
@@ -56,6 +58,8 @@ int		ver_map(int **table, char *content)
 	int ver_map;
 
 	ver_map = (int)ft_strlen(content) * 5;
+	if (ver_map > 900)
+		ver_map = 900;
 	return (ver_map);
 }
 

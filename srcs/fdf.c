@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/15 21:27:37 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/20 16:17:45 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,23 @@ void	fdf(int fd, char *name)
 	int		n;
 
 	content = readfile(fd);
-//	ft_putstr("the table:\n");
-///	ft_putstr(content);
-//	ft_putstr("mine:\n");
 	if (error_check(fd, content) == -1)
 		return ;
 	table = treatfile(content);
 	paint(table, content, name);
-	i = 0;
-	while (table[i])
-	{
-		n = 0;
-		while (table[i][n] != 0)
-		{
-			ft_putnbr(table[i][n]);
-			ft_putchar(' ');
-			n++;
-		}
-		ft_putstr("\n");
-		i++;
-	}
+//	i = 0;
+//	while (table[i])
+///	{
+//		n = 0;
+//		while (table[i][n] != 0)
+//		{
+//			ft_putnbr(table[i][n]);
+//			ft_putchar(' ');
+//			n++;
+//		}
+//		ft_putstr("\n");
+//		i++;
+//	}
 	return ;
 }
 

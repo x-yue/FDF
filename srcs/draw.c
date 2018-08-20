@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/15 21:30:45 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/20 15:53:47 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		ver_loc(int **table, int line, int col, int value)
 {
 	int		ver;
 
-	ver = col * 50 +  value * 10;
+	ver = col * 50 + value * 10;
 	return (ver);
 }
 

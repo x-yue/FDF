@@ -6,14 +6,14 @@
 #    By: yuxu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/02 14:59:23 by yuxu              #+#    #+#              #
-#    Updated: 2018/08/20 15:41:12 by yuxu             ###   ########.fr        #
+#    Updated: 2018/08/21 14:04:15 by yuxu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-SRCS = srcs/fdf.c srcs/convert.c srcs/draw.c srcs/errors.c \
+SRCS = srcs/fdf.c srcs/convert.c srcs/map.c srcs/errors.c \
        srcs/manip.c srcs/color.c srcs/link.c srcs/libft/libft.a \
-	   srcs/size.c
+	   srcs/draw.c
 FLAGS = -L /usr/include -lmlx -framework OpenGL -framework Appkit -g3
 
 all: $(NAME)

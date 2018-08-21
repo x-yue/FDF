@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/20 16:17:45 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/21 11:38:38 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ void	fdf(int fd, char *name)
 	int		n;
 
 	content = readfile(fd);
-	if (error_check(fd, content) == -1)
-		return ;
 	table = treatfile(content);
+	if (error_check(fd, content, table) == -1)
+	{
+		ft_putstr("Found wrong line length. Exiting.\n");
+		return ;
+	}
 	paint(table, content, name);
 //	i = 0;
 //	while (table[i])

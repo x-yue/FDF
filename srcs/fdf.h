@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/20 15:37:07 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/21 13:49:10 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ int					paint(int **table, char *content, char *name);
 int					deal_key(int key, void *param);
 int					ft_color(int value);
 int					**treatfile(char *content);
-int					error_check(int fd, char *content);
+int					error_check(int fd, char *content, int **table);
 void				ft_link(int **table, char *content, int line, int col);
 int					ft_size_hor(int **table);
 int					ft_size_ver(int **table);
-
+int					ft_max_int(int **table);
+int					hor_map(int **table);
+int					ver_map(int **table);
 
 #endif

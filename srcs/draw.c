@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/21 14:03:44 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/08/23 17:32:05 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,44 +42,28 @@ int		ft_map(void)
 	return (0);
 }
 
-int		hor_map(int **table)
-{
-	int hor_map;
-
-	hor_map = ft_size_hor(table) * 3 + ft_max_int(table) * 3 + 10;
-	if (hor_map > 1280)
-		hor_map = 1280;
-	if (hor_map < 150)
-		hor_map = 150;
-	return (hor_map);
-}
-
-int		ver_map(int **table)
-{
-	int ver_map;
-
-	ver_map = ft_size_ver(table) * 3 + 10;
-	if (ver_map > 720)
-		ver_map = 720;
-	if (ver_map < 150)
-		ver_map = 150;
-	return (ver_map);
-}
 */
 
-int		hor_loc(int **table, int line, int col, int value, int map_hor)
+int		hor_loc(int **table, int line, int col, int value)
 {
 	int		hor;
+	int		index;
 
-	hor = 5 + 5 * col * ((map_hor - 10) / (ft_size_hor(table) + ft_size_ver(table)));
+	index = 20;
+	hor = 50 + (col - line) * index;
+//	hor = 5 + 5 * col * ((map_hor - 10) / (ft_size_hor(table) + ft_size_ver(table)));
+//	hor = 5 + col * 10;
 	return (hor);
 }
 
-int		ver_loc(int **table, int line, int value)
+int		ver_loc(int **table, int line, int col, int value)
 {
 	int		ver;
+	int		index;
 
-	ver = ver_map(table) / 2 + value * 5 - line * 5;
+	index = 20;
+	ver = ver_map(table) / 2 + (line + col) * index - value / 5;
+//	ver = ver_map(table) / 2 + line * 10 - value * 3;
 	return (ver);
 }
 
@@ -87,9 +71,8 @@ int		paint(int **table, char *content, char *name)
 {
 	t_draw	d;
 
-	d.map_hor = hor_map(table);
 	d.mlx_ptr = mlx_init();
-	d.win_ptr = mlx_new_window(d.mlx_ptr, d.map_hor, ver_map(table), name);
+	d.win_ptr = mlx_new_window(d.mlx_ptr, hor_map(table), ver_map(table), name);
 	d.line = 0;
 	while (table[d.line])
 	{
@@ -97,8 +80,8 @@ int		paint(int **table, char *content, char *name)
 		while (table[d.line][d.col])
 		{
 			d.value = table[d.line][d.col];
-			d.hor = hor_loc(table, d.line, d.col, d.value, d.map_hor);
-			d.ver = ver_loc(table, d.line, d.value);
+			d.hor = hor_loc(table, d.line, d.col, d.value);
+			d.ver = ver_loc(table, d.line, d.col, d.value);
 			d.color = ft_color(d.value);
 			mlx_pixel_put(d.mlx_ptr, d.win_ptr, d.hor, d.ver, d.color);
 			d.col++;

@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/23 17:32:05 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/03 21:02:55 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ int		hor_loc(int **table, int line, int col, int value)
 	int		index;
 
 	index = 20;
-	hor = 50 + (col - line) * index;
-//	hor = 5 + 5 * col * ((map_hor - 10) / (ft_size_hor(table) + ft_size_ver(table)));
-//	hor = 5 + col * 10;
+	hor = 10 + (col - line) * index;
 	return (hor);
 }
 
@@ -62,8 +60,7 @@ int		ver_loc(int **table, int line, int col, int value)
 	int		index;
 
 	index = 20;
-	ver = ver_map(table) / 2 + (line + col) * index - value / 5;
-//	ver = ver_map(table) / 2 + line * 10 - value * 3;
+	ver = 50 + ver_map(table) / 2 + (line + col) * index - value / 5;
 	return (ver);
 }
 

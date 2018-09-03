@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/21 11:38:38 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/03 21:12:16 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ void	fdf(int fd, char *name)
 		return ;
 	}
 	paint(table, content, name);
-//	i = 0;
-//	while (table[i])
-///	{
-//		n = 0;
-//		while (table[i][n] != 0)
-//		{
-//			ft_putnbr(table[i][n]);
-//			ft_putchar(' ');
-//			n++;
-//		}
-//		ft_putstr("\n");
-//		i++;
-//	}
+	i = 0;
+	while (table[i])
+	{
+		n = 0;
+		while (table[i][n] != 0)
+		{
+			ft_putnbr(table[i][n]);
+			ft_putchar(' ');
+			n++;
+		}
+		ft_putstr("\n");
+		i++;
+	}
 	return ;
 }
 

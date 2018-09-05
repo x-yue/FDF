@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 04:53:03 by yuxu              #+#    #+#             */
-/*   Updated: 2018/03/19 18:04:55 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/05 21:45:56 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ char			**ft_strsplit(char const *sentence, char splitter)
 		nb_words--;
 		current_word++;
 	}
-	fresh[current_word] = 0;
+	fresh[current_word] = NULL;
 	return (fresh);
 }

@@ -1,2 +1,0 @@
-
-docker exec --env FLASK_APP=/root/hello.py Abathur flask run --port 3000 --host 0.0.0.0

@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/03 21:12:16 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/05 17:24:32 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	fdf(int fd, char *name)
 {
 	char	*content;
 	int		**table;
-	int		i;
-	int		n;
+	void	*mlx_ptr;
+	void	*win_ptr;
 
 	content = readfile(fd);
 	table = treatfile(content);
@@ -38,20 +38,9 @@ void	fdf(int fd, char *name)
 		ft_putstr("Found wrong line length. Exiting.\n");
 		return ;
 	}
-	paint(table, content, name);
-	i = 0;
-	while (table[i])
-	{
-		n = 0;
-		while (table[i][n] != 0)
-		{
-			ft_putnbr(table[i][n]);
-			ft_putchar(' ');
-			n++;
-		}
-		ft_putstr("\n");
-		i++;
-	}
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, hor_map(table), ver_map(table), name);
+	paint(mlx_ptr, win_ptr, table, content);
 	return ;
 }
 
@@ -59,8 +48,11 @@ int		main(int ac, char **av)
 {
 	int		fd;
 
-	if ((fd = open(av[1], O_RDONLY)) == -1)
+	if (ac == 2)
+	{
+		if ((fd = open(av[1], O_RDONLY)) == -1)
 		return (0);
+	}
 	fdf(fd, av[1]);
 	close(fd);
 	return (0);

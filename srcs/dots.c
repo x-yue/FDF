@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/03 21:02:55 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/05 22:15:01 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,48 @@ int		ft_map(void)
 	mlx_loop(d.mlx_ptr); //where to draw and gestion des evenements
 	return (0);
 }
-
 */
 
-int		hor_loc(int **table, int line, int col, int value)
+int		hor_loc(int **table, int line, int col, int index)
 {
 	int		hor;
-	int		index;
 
-	index = 20;
-	hor = 10 + (col - line) * index;
+	hor = 50 + ft_size_ver(table) * index + (col - line) * index;
 	return (hor);
 }
 
-int		ver_loc(int **table, int line, int col, int value)
+int		ver_loc(int **table, int line, int col, int index)
 {
 	int		ver;
-	int		index;
+	int		value;
 
-	index = 20;
-	ver = 50 + ver_map(table) / 2 + (line + col) * index - value / 5;
+	value = (table[line][col] - 1) / 10;
+	ver = 50 + ft_max_int(table) * index + (line + col - value) * index;
 	return (ver);
 }
 
-int		paint(int **table, char *content, char *name)
+int		paint(void *mlx_ptr, void *win_ptr, int **table, char *content)
 {
 	t_draw	d;
 
-	d.mlx_ptr = mlx_init();
-	d.win_ptr = mlx_new_window(d.mlx_ptr, hor_map(table), ver_map(table), name);
+	d.index_hor = fdf_index_hor(table);
+	d.index_ver = fdf_index_ver(table);
 	d.line = 0;
 	while (table[d.line])
 	{
 		d.col = 0;
 		while (table[d.line][d.col])
 		{
-			d.value = table[d.line][d.col];
-			d.hor = hor_loc(table, d.line, d.col, d.value);
-			d.ver = ver_loc(table, d.line, d.col, d.value);
-			d.color = ft_color(d.value);
-			mlx_pixel_put(d.mlx_ptr, d.win_ptr, d.hor, d.ver, d.color);
+			d.value = ((table[d.line][d.col]) - 1) / 10;
+			d.hor = hor_loc(table, d.line, d.col, d.index_hor);
+			d.ver = ver_loc(table, d.line, d.col, d.index_ver);
+			mlx_pixel_put(mlx_ptr, win_ptr, d.hor, d.ver, color(d.ver));
+			fdf_link(mlx_ptr, win_ptr, table, d);
 			d.col++;
 		}
 		d.line++;
 	}
-	ft_link(table, content, d.line, d.col);
-	mlx_key_hook(d.win_ptr, deal_key, (void *)0);
-	mlx_loop(d.mlx_ptr);
+	mlx_key_hook(win_ptr, deal_key, (void *)0);
+	mlx_loop(mlx_ptr);
 	return (0);
 }

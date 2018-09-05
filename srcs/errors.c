@@ -6,12 +6,12 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:18:38 by yuxu              #+#    #+#             */
-/*   Updated: 2018/08/21 11:37:20 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/05 14:26:36 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 int		check_table(int **table)
 {
 	int line;
@@ -34,12 +34,12 @@ int		check_table(int **table)
 	}
 	return (0);
 }
-
+*/
 int		error_check(int fd, char *content, int **table)
 {
 	int		i;
 
-	if (fd == -1 || content == NULL || check_table(table) == -1)
+	if (fd == -1 || content == NULL)
 		return (-1);
 	i = 0;
 	while (content[i] != 0)

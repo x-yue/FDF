@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/05 21:41:28 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/06 00:29:44 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef	struct		s_draw
 	int				ver;
 	int				index_hor;
 	int				index_ver;
-	int				hor_next;
-	int				ver_next;
+	int				hor_right;
+	int				ver_right;
+	int				hor_under;
+	int				ver_under;
 	int				x;
 	int				y;
 	int				dist_hor;
@@ -49,7 +51,7 @@ typedef	struct		s_draw
 }					t_draw;
 
 char				*readfile(int fd);
-int					paint(void *mlx_ptr, void *win_ptr, int **table,
+void				paint(void *mlx_ptr, void *win_ptr, int **table,
 					char *content);
 int					deal_key(int key, void *param);
 int					color(int value);

@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/05 17:24:32 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/06 01:10:10 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	fdf(int fd, char *name)
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, hor_map(table), ver_map(table), name);
 	paint(mlx_ptr, win_ptr, table, content);
+	mlx_key_hook(win_ptr, deal_key, (void *)100);
+	mlx_loop(mlx_ptr);
 	return ;
 }
 
@@ -51,9 +53,9 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (0);
+			return (0);
+		fdf(fd, av[1]);
+		close(fd);
 	}
-	fdf(fd, av[1]);
-	close(fd);
 	return (0);
 }

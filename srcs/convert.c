@@ -6,19 +6,11 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:24:30 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/05 21:35:37 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/08 22:48:02 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int		ft_atoi_large(char *word)
-{
-	int		res;
-
-	res = (ft_atoi(word) * 10 + 1);
-	return (res);
-}
 
 int		*dimension_remove(char *str, int lenth)
 {
@@ -32,7 +24,7 @@ int		*dimension_remove(char *str, int lenth)
 		return (NULL);
 	while (char_t[word_nbr])
 	{
-		array[word_nbr] = ft_atoi_large(char_t[word_nbr]);
+		array[word_nbr] = (ft_atoi(char_t[word_nbr]) * 10 + 1);
 		word_nbr++;
 	}
 	array[word_nbr] = 0;

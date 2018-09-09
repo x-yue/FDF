@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 21:18:38 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/06 01:10:31 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/08 19:33:07 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ int		check_table(int **table)
 	return (0);
 }
 
-int		error_check(int fd, char *content, int **table)
+int		error_check(char *content, int **table)
 {
 	int		i;
 
-	if (fd == -1 || content == NULL)
+	if (content == NULL || check_table(table) == -1)
+	{
+		ft_putstr("Found wrong line length. Exiting.\n");
 		return (-1);
+	}
 	i = 0;
 	while (content[i] != 0)
 	{
@@ -51,4 +54,11 @@ int		error_check(int fd, char *content, int **table)
 			return (-1);
 	}
 	return (0);
+}
+
+void	error_message(char *name)
+{
+	ft_putstr("No file ");
+	ft_putstr(name);
+	ft_putchar('\n');
 }

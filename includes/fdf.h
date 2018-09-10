@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 20:10:17 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 21:41:11 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 21:53:08 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int					**treatfile(char *content);
 void				ft_link(int **table, char *content, int line, int col);
 int					ft_size_hor(int **table);
 int					ft_size_ver(int **table);
-int					hor_loc(t_fdf, int line, int col, t_draw d);
-int					ver_loc(t_fdf, int line, int col, t_draw d);
+int					hor_loc(t_fdf f, int line, int col, t_draw d);
+int					ver_loc(t_fdf f, int line, int col, t_draw d);
 int					ft_max_int(int **table);
 int					hor_map(int **table);
 int					ver_map(int **table);

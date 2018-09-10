@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 21:34:14 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 21:52:26 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		hor_loc(t_fdf f, int line, int col, t_draw d)
 {
 	int		hor;
 
-	hor = 50 + (ft_size_ver(f.table) + col - line ) * d.index_hor;
+	hor = 50 + (ft_size_ver(f.table) + col - line) * d.index_hor;
 	return (hor);
 }
 

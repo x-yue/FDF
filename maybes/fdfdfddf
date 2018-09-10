@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yuxu <marvin@42.fr>                        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/08/02 14:59:23 by yuxu              #+#    #+#              #
+#    Updated: 2018/09/10 14:37:21 by yuxu             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	=	fdf
+
+SRCS	=	srcs/fdf.c srcs/convert.c srcs/map.c srcs/errors.c \
+			srcs/manip.c srcs/color.c srcs/link.c srcs/dots.c srcs/index.c
+
+FLAGS	=	-L /usr/include -lmlx -framework OpenGL -framework Appkit -g3
+
+LIBFT	= 	srcs/libft
+MLX		=	srcs/minilibx_macos
+LIB_A	=	srcs/libft/libft.a
+MLX_A	=	srcs/minilibx_macos/libmlx.a
+
+OBJ		=	fdf.c convert.c map.c errors.c manip.c color.c link.c dots.c index.c
+OBJS	=	$(OBJ: .c = .o)
+
+all: $(NAME)
+
+$(NAME):
+		cd $(LIBFT) && make re
+		cd $(MLX) && make re
+		gcc 
+		clang -I /usr/local/include $(SRCS) $(LIB_A) $(MLX_A) $(FLAGS)
+
+clean:
+		cd $(LIBFT) && make clean
+		cd $(MLX) && make clean
+		/bin/rm -f $(OBJS)
+
+fclean: clean
+		/bin/rm $(NAME)
+		/bin/rm srcs/minilibx_macos/libmlx.a
+		/bin/rm srcs/libft/libft.a
+
+re: fclean all

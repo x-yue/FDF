@@ -6,7 +6,7 @@
 #    By: yuxu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/10 15:49:19 by yuxu              #+#    #+#              #
-#    Updated: 2018/09/10 17:46:22 by yuxu             ###   ########.fr        #
+#    Updated: 2018/09/10 20:49:34 by yuxu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CCINCLUDES	= -I$(HEADERLIB) -I$(INCLUDES) -I$(HEADERLIBX)
 HEADERS		= $(INCLUDES)/fdf.h
 SRCSDIR		= srcs
 OBJSDIR		= objects
-SRC			= fdf.c color.c convert.c dots.c index.c manip.c map.c link.c
+SRC			= fdf.c color.c convert.c dots.c manip.c map.c link.c
 
 OBJ			= $(SRC:%.c=%.o)
 	SRCS	= $(addprefix $(SRCSDIR)/, $(SRC))

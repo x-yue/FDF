@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 15:24:25 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 20:50:06 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 20:41:34 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,35 @@ int		ft_size_hor(int **table)
 	}
 	return (hor);
 }
+/*
+int		hor_map(int **table)
+{
+	int hor_map;
+	int total_size;
 
+	total_size = ft_size_hor(table) + ft_size_ver(table);
+	hor_map = total_size * 20 + 100;
+	if (hor_map < 150)
+		hor_map = 150;
+	if (hor_map > 2560)
+		hor_map = 2048;
+	return (hor_map);
+}
+
+int		ver_map(int **table)
+{
+	int ver_map;
+	int total_size;
+
+	total_size = ft_size_ver(table) + ft_size_hor(table) + ft_max_int(table);
+	ver_map = total_size * 20 + 100;
+	if (ver_map < 150)
+		ver_map = 150;
+	if (ver_map > 1440)
+		ver_map = 1152;
+	return (ver_map);
+}
+*/
 int		map_size(int size, int hor_ver)
 {
 	int map_size;

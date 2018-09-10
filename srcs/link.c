@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 21:27:58 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 19:39:01 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 21:25:41 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	fdf_line(void *mlx_ptr, int *win_ptr, t_line l)
 	}
 }
 
-void	fdf_link(void *mlx_ptr, void *win_ptr, int **table, t_draw d)
+void	fdf_link(void *mlx_ptr, void *win_ptr, t_fdf f, t_draw d)
 {
 	t_line l;
 
@@ -54,11 +54,11 @@ void	fdf_link(void *mlx_ptr, void *win_ptr, int **table, t_draw d)
 	l.value = d.value;
 	if (d.col + 1 < d.col_max && d.line + 1 < d.line_max)
 	{
-		l.x1 = hor_loc(table, d.line, d.col + 1, d.index_hor);
-		l.y1 = ver_loc(table, d.line, d.col + 1, d.index_ver);
+		l.x1 = hor_loc(f, d.line, d.col + 1, d);
+		l.y1 = ver_loc(f, d.line, d.col + 1, d);
 		fdf_line(mlx_ptr, win_ptr, l);
-		l.x1 = hor_loc(table, d.line + 1, d.col, d.index_hor);
-		l.y1 = ver_loc(table, d.line + 1, d.col, d.index_ver);
+		l.x1 = hor_loc(f, d.line + 1, d.col, d);
+		l.y1 = ver_loc(f, d.line + 1, d.col, d);
 		fdf_line(mlx_ptr, win_ptr, l);
 	}
 	return ;

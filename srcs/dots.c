@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:54:43 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 19:39:06 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 19:48:47 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	paint(t_fdf f)
 	t_draw	d;
 
 	d.index_hor = fdf_index_hor(f.table);
-	d.index_hor = fdf_index_ver(f.table);
+	d.index_ver = fdf_index_ver(f.table);
 	d.line_max = ft_size_ver(f.table);
 	d.col_max = ft_size_hor(f.table);
 	d.line = 0;

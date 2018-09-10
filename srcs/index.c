@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 14:59:41 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 19:38:53 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 19:48:01 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int		fdf_index_hor(int **table)
 	int hor;
 	int total_size;
 
+	index = 20;
 	hor = hor_map(table);
-	if (hor <= 2048)
-		return (index = 20);
-	total_size = ft_size_hor(table) + ft_size_ver(table);
-	index = 1948 / total_size;
+	if (hor >= 2048)
+	{
+		total_size = ft_size_hor(table) + ft_size_ver(table);
+		index = 1948 / total_size;
+	}
 	return (index);
 }
 
@@ -34,12 +36,15 @@ int		fdf_index_ver(int **table)
 	int total_size;
 	int index;
 
+	index = 20;
 	ver = ver_map(table);
-	if (ver <= 1152)
-		return (index = 20);
-	max_int = ft_max_int(table);
-	total_size = ft_size_hor(table) + ft_size_ver(table) + max_int;
-	return (index = 1052 / total_size);
+	if (ver > 1152)
+	{
+		max_int = ft_max_int(table);
+		total_size = ft_size_hor(table) + ft_size_ver(table) + max_int;
+		index = 1052 / total_size;
+	}
+	return (index);
 }
 /*
 int		fdf_index(int map_size, int size, int hor_ver)

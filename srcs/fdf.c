@@ -6,7 +6,7 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/10 19:39:09 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 20:41:14 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	fdf(int fd, char *name)
 		return ;
 	}
 	f.mlx_ptr = mlx_init();
-//	f.size_hor = ft_size_hor(f.table) + ft_size_ver(f.table);
-//	f.size_ver = f.size_hor + ft_max_int(f.table);
-//	f.map_size_hor = map_size(f.size_hor, 1);
-//	f.map_size_ver = map_size(f.size_ver, 2);
-	f.win_ptr = mlx_new_window(f.mlx_ptr, hor_map(f.table), ver_map(f.table), name);
+	f.size_hor = ft_size_hor(f.table) + ft_size_ver(f.table);
+	f.size_ver = f.size_hor + ft_max_int(f.table);
+	f.map_size_hor = map_size(f.size_hor, 1);
+	f.map_size_ver = map_size(f.size_ver, 2);
+	f.win_ptr = mlx_new_window(f.mlx_ptr, f.map_size_hor, f.map_size_ver, name);
 	paint(f);
 	mlx_key_hook(f.win_ptr, deal_key, (void *)100);
 	mlx_loop(f.mlx_ptr);

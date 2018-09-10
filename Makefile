@@ -5,31 +5,64 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yuxu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/02 14:59:23 by yuxu              #+#    #+#              #
-#    Updated: 2018/09/05 22:24:04 by yuxu             ###   ########.fr        #
+#    Created: 2018/09/10 15:49:19 by yuxu              #+#    #+#              #
+#    Updated: 2018/09/10 17:46:22 by yuxu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
-SRCS = srcs/fdf.c srcs/convert.c srcs/map.c srcs/errors.c \
-		srcs/manip.c srcs/color.c srcs/link.c srcs/libft/libft.a \
-		srcs/dots.c srcs/index.c srcs/minilibx_macos/libmlx.a
-FLAGS = -L /usr/include -lmlx -framework OpenGL -framework Appkit -g3
+NAME		= fdf
+
+DEBUG		= -g3
+CC			= gcc -Wall -Werror -Wextra
+LIBFTDIR	= srcs/libft
+MINILIBX	= srcs/minilibx_macos
+LIB			= libft.a
+LIBX		= libmlx.a
+HEADERLIB	= $(LIBFTDIR)
+HEADERLIBX	= $(MINILIBX)
+INCLUDES	= includes
+LDFLAGS		= -L$(LIBFTDIR) -lft -framework OpenGL -framework AppKit \
+			  -L$(MINILIBX) -lmlx
+CCINCLUDES	= -I$(HEADERLIB) -I$(INCLUDES) -I$(HEADERLIBX)
+HEADERS		= $(INCLUDES)/fdf.h
+SRCSDIR		= srcs
+OBJSDIR		= objects
+SRC			= fdf.c color.c convert.c dots.c index.c manip.c map.c link.c
+
+OBJ			= $(SRC:%.c=%.o)
+	SRCS	= $(addprefix $(SRCSDIR)/, $(SRC))
+	OBJS	= $(addprefix $(OBJSDIR)/, $(OBJ))
 
 all: $(NAME)
-#	make -C srcs/minilibx_macos
-#	make -C srcs/libft
 
-$(NAME):
-		clang -I /usr/local/include $(SRCS) $(FLAGS)
+$(NAME): $(LIBFTDIR)/$(LIB) $(MINILIBX)/$(LIBX) $(OBJSDIR) $(OBJS)
+		 $(CC) $(LDFLAGS) $(CCINCLUDES) $(OBJS) -o $(NAME)
+
+$(OBJSDIR)/%.o: $(SRCSDIR)/%.c $(HEADERS)
+	@$(CC) -c -o $@ $< $(CCINCLUDES)
+
+$(LIBFTDIR)/$(LIB):
+	@make -C $(LIBFTDIR)/
+
+$(MINILIBX)/$(LIBX):
+	@make -C $(MINILIBX)/
+
+$(OBJSDIR):
+	@mkdir -p objects/
 
 clean:
-#		/bin/rm srcs/minilibx_macos/*.o
-#		/bin/rm srcs/libft/*.o
+	@/bin/rm -rf $(OBJSDIR);
+	@make clean -C $(LIBFTDIR)
+	@make clean -C $(MINILIBX)
 
 fclean: clean
-		/bin/rm a.out
-#		/bin/rm srcs/minilibx_macos/libmlx.a
-#		/bin/rm srcs/libft/libft.a
+	@echo "${RED}Purge $(NAME)${RESET} [${GREEN}✔${RESET}]"
+	@/bin/rm -f $(NAME)
+	@make fclean -C $(LIBFTDIR)
+	@rm -rf $(NAME).dSYM
 
 re: fclean all
+
+.PHONY: all, clean, fclean, re, $(LIBD)
+
+.SUFFIXES: .c .o

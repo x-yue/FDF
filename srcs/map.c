@@ -6,11 +6,11 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 15:24:25 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/05 16:23:04 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 19:38:48 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int		ft_max_int(int **table)
 {
@@ -102,3 +102,17 @@ int		ver_map(int **table)
 		ver_map = 1152;
 	return (ver_map);
 }
+/*
+int		map_size(int size, int hor_ver)
+{
+	int map_size;
+
+	map_size = size * 20 + 100;
+	if (map_size < 150)
+		return (map_size = 150);
+	if (map_size > 2560 && hor_ver == 1)
+		return (map_size = 2048);
+	if (map_size > 1440 && hor_ver == 2)
+		return (map_size = 1152);
+	return (map_size);
+}*/

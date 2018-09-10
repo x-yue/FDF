@@ -6,11 +6,11 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:37:09 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/08 19:35:50 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 19:39:09 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 char	*readfile(int fd)
 {
@@ -21,25 +21,58 @@ char	*readfile(int fd)
 	content = NULL;
 	while ((rd = read(fd, buf, BUFF_SIZE)) > 0)
 		content = joinfree(content, buf, rd);
+	if (rd == -1)
+		return (NULL);
 	return (content);
+}
+
+int		check_table(int **table)
+{
+	int line;
+	int bm;
+	int col;
+
+	col = 0;
+	while (table[0][col])
+		col++;
+	bm = col;
+	line = 1;
+	while (table[line])
+	{
+		col = 0;
+		while (table[line][col])
+			col++;
+		if (col != bm)
+			return (-1);
+		line++;
+	}
+	return (0);
 }
 
 void	fdf(int fd, char *name)
 {
-	char	*content;
-	int		**table;
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_fdf	f;
 
-	content = readfile(fd);
-	table = treatfile(content);
-	if (error_check(content, table) == -1)
+	if ((f.content = readfile(fd)) == NULL)
+	{
+		ft_putstr_fd("No data found.\n", 2);
 		return ;
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, hor_map(table), ver_map(table), name);
-	paint(mlx_ptr, win_ptr, table, content);
-	mlx_key_hook(win_ptr, deal_key, (void *)100);
-	mlx_loop(mlx_ptr);
+	}
+	f.table = treatfile(f.content);
+	if (check_table(f.table) == -1)
+	{
+		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
+		return ;
+	}
+	f.mlx_ptr = mlx_init();
+//	f.size_hor = ft_size_hor(f.table) + ft_size_ver(f.table);
+//	f.size_ver = f.size_hor + ft_max_int(f.table);
+//	f.map_size_hor = map_size(f.size_hor, 1);
+//	f.map_size_ver = map_size(f.size_ver, 2);
+	f.win_ptr = mlx_new_window(f.mlx_ptr, hor_map(f.table), ver_map(f.table), name);
+	paint(f);
+	mlx_key_hook(f.win_ptr, deal_key, (void *)100);
+	mlx_loop(f.mlx_ptr);
 	return ;
 }
 
@@ -51,13 +84,15 @@ int		main(int ac, char **av)
 	{
 		if ((fd = open(av[1], O_RDONLY)) == -1)
 		{
-			error_message(av[1]);
+			ft_putstr_fd("No file ", 2);
+			ft_putstr_fd(av[1], 2);
+			ft_putchar_fd('\n', 2);
 			return (0);
 		}
 		fdf(fd, av[1]);
 		close(fd);
 	}
 	if (ac != 2)
-		ft_putstr("Usage : ./fdf <filename> [ case_size z_size ]\n");
+		ft_putstr_fd("Usage : ./fdf <filename> [ case_size z_size ]\n", 2);
 	return (0);
 }

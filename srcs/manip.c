@@ -6,13 +6,13 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 21:01:16 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/09 01:29:42 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 16:05:06 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-int		deal_key(int key, void *param)
+int		deal_key(int key)
 {
 	if (key == K_EXIT)
 		exit(0);

@@ -6,11 +6,11 @@
 /*   By: yuxu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:24:30 by yuxu              #+#    #+#             */
-/*   Updated: 2018/09/08 22:48:02 by yuxu             ###   ########.fr       */
+/*   Updated: 2018/09/10 15:58:40 by yuxu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int		*dimension_remove(char *str, int lenth)
 {
